@@ -98,12 +98,26 @@ console.log(titles)
 //Question 9 Question 9 Question 9 Question 9
 // 9. Make an array of objects, each object representing a single row in the table. Remove the commas from the ID column and convert it to an actual Number data type. Example: [{id: 1001, firstName: 'Lorem', lastName: 'ipsum', department: 'dolor', client: 'sit'}]
 
-//tried but did not get it.
-
+var rows = document.querySelectorAll('tbody tr')
+var rowsArray = []
+rows.forEach(function(row) {
+   //childnodes will give you every node.  use children it is easier.
+   //console.dir(row.children[0].innerHTML)
+   var rowObject = {
+      id: Number(row.children[0].innerHTML.replace(',', '')),//replace the comma with a blank.  get rid of the comma.  can attach the replace to innerHTML because it's a string.  innerHTML is just text.  we are doing number to wrap the entire thing in number to give you one value.
+      firstName: row.children[1].innerHTML ,
+      lastName: row.children[2].innerHTML,
+      department: row.children[3].innerHTML,
+      client: row.children[4].innerHTML,
+   }
+rowsArray.push(rowObject)
+})
+/// did this in class.  I went through the code top to bottom and understand what we did and why we did it.  I just hope that I can do more of this on my own. 
 
 //question 10 question 10 question 10 question 10
 // 10. Make each word in the table capitalized.
-//slice
-//for each.
-
-//var capitalized = document.querySelector(table)
+var cells = document.querySelectorAll('tbody td')
+cells.forEach(function(cell) {
+   cell.classList.add('text-capitalize')
+})
+///used the querySelectorAll to use the array of data to add the text-capitalize.  should have looked through bootstrap for the text-capitalize.  doh.
